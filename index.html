@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="異なる時期や異なる場所の地図を重ねて表示し、両者を比較して見ることに特化した地図閲覧サイトです。地理院地図の年代別空中写真、日本版MapWarperの「五万分一地形圖」が閲覧できます。大きさや距離がつかみやすいよう、目安となる同心円を表示します。">
+  <meta name="theme-color" content="#C4DFE6">
+  <meta property="og:title" content="時期と距離の比較地図">
+  <meta property="og:description" content="異なる時期や異なる場所の地図を重ねて表示し、両者を比較して見ることに特化した地図閲覧サイトです。地理院地図の年代別空中写真、日本版MapWarperの「五万分一地形圖」が閲覧できます。大きさや距離がつかみやすいよう、目安となる同心円を表示します。">
+  <meta property="og:url" content="https://kiritter.github.io/hikakumap/">
+  <meta property="og:image" content="https://kiritter.github.io/hikakumap/icons/icon-192x192.png">
+  <meta name="twitter:card" content="summary">
+  <title>時期と距離の比較地図</title>
+  <base href="/hikakumap/">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" type="image/png" href="icons/apple-touch-icon-180x180.png">
+  <link rel="stylesheet" href="css/vendor/leaflet_v1.9.4/leaflet.css">
+  <link rel="stylesheet" href="css/app/index.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B25L64G43V"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host === '127.0.0.1' || host === 'localhost') {
+      gtag = console.debug;
+    }else{
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B25L64G43V');
+    }
+  </script>
+</head>
+
+<body class="js-body">
+  <div class="my-header">
+    <span class="map-title">時期と距離の比較地図</span>
+    <span class="recommend-place">
+      <span class="recommend-place-note">いくつかの場所をピックアップしました</span>
+      <input type="button" class="recommend-place-show-btn js-recommend-place-show-btn" value="見てみる">
+    </span>
+    <span class="advanced">
+      <input type="button" class="advanced-show-btn js-advanced-show-btn" value="Advanced機能">
+    </span>
+    <span class="about">
+      <a href="html/about.html" target="_blank">About</a>
+    </span>
+  </div>
+
+  <div class="my-body">
+
+    <div class="map-area">
+      <div class="map-right-wrap js-map-right-wrap">
+        <div id="map-right" class="js-map-right"></div>
+      </div>
+      <div class="map-left-wrap js-map-left-wrap">
+        <div id="map-left" class="js-map-left"></div>
+      </div>
+    </div>
+
+    <div class="current-zoom-level">
+      <span>Zoom Level [<span class="js-current-zoom-level"></span>]</span>
+    </div>
+
+    <div class="click-remarks-area">
+      <div>
+        <div class="click-remarks-note">地図上でクリックすると<br>距離を示す同心円が表示されます</div>
+      </div>
+    </div>
+
+    <div class="switch-mapmode-root-area js-switch-mapmode-root-area">
+      <div class="switch-mapmode-area">
+        <div>
+          <label class="switch-mapmode-radio-lbl"><input type="radio" name="js-switch-mapmode-radio-group" class="switch-mapmode-radio" value="1">標準モード</label>
+          <br>
+          <label class="switch-mapmode-radio-lbl"><input type="radio" name="js-switch-mapmode-radio-group" class="switch-mapmode-radio" value="2">左右に別の場所</label>
+        </div>
+      </div>
+      <div class="js-move-to-center-standard-area">
+        <div>
+          <div class="move-to-center-note">地図上で選択した場所を画面中央にします</div>
+        </div>
+        <div>
+          <div><input type="button" class="move-to-center-btn js-move-to-center-btn" value="中央にする"></div>
+        </div>
+      </div>
+      <div class="move-to-center-isolated-area js-move-to-center-isolated-area">
+        <div>
+          <div class="move-to-center-note">左右それぞれで場所を選択し、<br>下のボタンを押してください</div>
+        </div>
+        <div>
+          <div><input type="button" class="move-to-center-btn js-move-to-center-btn" value="中央にする"></div>
+          <div class="move-to-center-btn-note">※高緯度側の円周の方が大きく表示されます</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-as-url-area">
+      <div>
+        <div class="copy-as-url-note">メモやシェアにご利用ください。<br>現在の場所をURLとしてコピー</div>
+      </div>
+      <div>
+        <div><input type="button" class="copy-as-url-btn js-copy-as-url-btn" value="クリップボードにコピー"></div>
+        <div><label class="copy-as-url-chk-lbl"><input type="checkbox" class="copy-as-url-chk js-copy-as-url-chk" checked>同心円の座標も含める</label></div>
+        <div class="copy-as-url-message js-copy-as-url-message"></div>
+        <div class="copy-as-url-btn-note"></div>
+      </div>
+    </div>
+
+    <div class="sea-surface-area js-sea-surface-area">
+      <div>
+        <span class="sea-surface-note">【縄文海進イメージ】を選択している状態でのみ利用可</span>
+      </div>
+      <div>
+        <span class="sea-surface-input-area">海面: 現在の <input type="number" class="sea-surface-input js-sea-surface-input" value="" min="0" max="30"> m上として</span>
+        <span><input type="button" class="sea-surface-btn js-sea-surface-btn" value="再描画"></span>
+      </div>
+      <div>
+        <div class="sea-surface-note2">※あくまで<a href="https://maps.gsi.go.jp/development/ichiran.html#dem" target="_blank">標高タイルデータ(DEM5A)</a>を元に描画しているだけのため、<br>　正確なシミュレーションではありません。(※データ自体がない海岸線もあります)<br>　過去当時とは地形自体も異なるため、大体の雰囲気としてご覧ください。</div>
+      </div>
+    </div>
+
+    <div class="latlng-info-area latlng-info-area-left js-latlng-info-area js-latlng-info-area-left">
+      <div class="search-latlng-area">
+        <div>
+          <span>緯度,経度：<input type="text" class="search-latlng-input js-search-latlng-input" value="" placeholder="Search"></span>
+        </div>
+      </div>
+      <div class="show-latlng-area">
+        <div>
+          <div>緯度,経度：<span class="show-latlng-label js-show-latlng-label"></span></div>
+          <div>経度,緯度：<span class="show-lnglat-label js-show-lnglat-label"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="latlng-info-area latlng-info-area-right js-latlng-info-area js-latlng-info-area-right">
+      <div class="search-latlng-area">
+        <div>
+          <span>緯度,経度：<input type="text" class="search-latlng-input js-search-latlng-input" value="" placeholder="Search"></span>
+        </div>
+      </div>
+      <div class="show-latlng-area">
+        <div>
+          <div>緯度,経度：<span class="show-latlng-label js-show-latlng-label"></span></div>
+          <div>経度,緯度：<span class="show-lnglat-label js-show-lnglat-label"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recommend-place-area js-recommend-place-area">
+      <div class="recommend-place-header js-recommend-place-header">
+        <div class="recommend-place-header-note">※右下のマークのドラッグで<br>　ボックス全体を伸縮可能</div>
+        <div class="recommend-place-header-close"><input type="button" class="recommend-place-close-btn js-recommend-place-close-btn" value="閉じる"></div>
+      </div>
+      <div class="recommend-place-body">
+        <div class="recommend-place-note">どのような比較ができるかの事例になっています。</div>
+        <div class="recommend-place-list js-recommend-place-list"></div>
+      </div>
+    </div>
+
+    <div class="permanent-cache-area js-permanent-cache-area">
+      <div class="permanent-cache-header js-permanent-cache-header">
+        <div class="permanent-cache-header-title">Advanced機能</div>
+        <div class="permanent-cache-header-close"><input type="button" class="permanent-cache-close-btn js-permanent-cache-close-btn" value="閉じる"></div>
+      </div>
+      <div class="permanent-cache-body">
+        <div class="permanent-cache-title">永続的キャッシュ機能</div>
+        <div class="permanent-cache-note">すぐに数百MB～数GBを費やす機能であるため、<br>「<span class="permanent-cache-note-link"><a href="html/readme_cache.html" target="_blank">機能の説明</a></span>」をご確認のうえ、ご利用ください。</div>
+        <div class="permanent-cache-status-display">現在の設定値は <span class="permanent-cache-status-text">[<span class="js-permanent-cache-status">xxx</span>]</span> です。</div>
+        <div class="permanent-cache-each-wrap">
+          <div class="js-permanent-cache-oldedition-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-oldedition-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（切替後、画面を自動で再表示します）</div>
+          </div>
+          <div class="js-permanent-cache-full-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-full-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（切替後、画面を自動で再表示します）</div>
+          </div>
+          <div class="js-permanent-cache-clear-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-clear-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（無効化と同時にキャッシュもすべて削除します）</div>
+          </div>
+        </div>
+        <div class="permanent-cache-estimate-display">
+          <div>目安として（※容量確認APIが利用可能な場合に数値を表示）</div>
+          <div class="permanent-cache-estimate-content">
+            <div>現Origin(<span class="js-permanent-cache-origin"></span>)配下の総合計量</div>
+            <div>・使用量：[<span class="js-permanent-cache-estimate-usage">-</span>]GB</div>
+            <div>・制限値：[<span class="js-permanent-cache-estimate-quota">-</span>]GB</div>
+            <div class="permanent-cache-estimate-content-note">※上記は本Dialog表示時点での値です。<br>　本Dialogを開いたままの状態では自動で値は変わりません。</div>
+            <div><input type="button" class="permanent-cache-estimate-btn js-permanent-cache-estimate-btn" value="使用量 再取得"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-area js-message-area">
+    </div>
+
+    <div class="drag-handle-buffer js-drag-handle-buffer">
+      <div class="drag-handle-line js-drag-handle-line"></div>
+      <div class="drag-handle-knob js-drag-handle-knob"><span class="drag-handle-knob-left">←</span><span class="drag-handle-knob-right">→</span></div>
+    </div>
+
+  </div>
+
+  <script src="js/vendor/leaflet_v1.9.4/leaflet.js"></script>
+  <script src="js/vendor/L.Map.Sync.js"></script>
+  <script src="js/vendor/leaflet-tilelayer-colorizr-modified.js"></script>
+  <script src="js/vendor/leaflet.geometryutil.js"></script>
+  <script src="js/vendor/localforage.min.js"></script>
+
+  <script src="js/app/extends/L.Control.Layers.WithClose.js"></script>
+  <script src="js/app/extends/L.GridLayer.OldEditionMap.js"></script>
+  <script src="js/app/extends/L.GridLayer.OldEditionMap.Cache.js"></script>
+  <script src="js/app/extends/L.GridLayer.TileCanvas.js"></script>
+  <script src="js/app/extends/L.GridLayer.TileCanvas.Cache.js"></script>
+  <script src="js/app/extends/L.LayerGroupWithAdding.js"></script>
+  <script src="js/app/extends/L.TileLayer.Colorizr.Cache.js"></script>
+
+  <script src="js/app/errors/global_error_handler.js"></script>
+  <script src="js/app/states/Ga4Channel.js"></script>
+  <script src="js/app/states/Ga4Repo.js"></script>
+  <script src="js/app/states/global_state.js"></script>
+  <script src="js/app/states/GlobalCacheRepo.js"></script>
+  <script src="js/app/states/MyChannel.js"></script>
+  <script src="js/app/states/OldEditionMapIdCacheRepo.js"></script>
+  <script src="js/app/states/OldEditionMapIdLocalRepo.js"></script>
+  <script src="js/app/states/OldEditionMapIdRepo.js"></script>
+  <script src="js/app/states/PermanentCacheStatusRepo.js"></script>
+  <script src="js/app/states/UrlQueryParamRepo.js"></script>
+  <script src="js/app/states/UrlRepo.js"></script>
+  <script src="js/app/utils/UtilCalcForTile.js"></script>
+  <script src="js/app/utils/UtilCircle.js"></script>
+  <script src="js/app/utils/UtilDeepFreeze.js"></script>
+  <script src="js/app/utils/UtilMap.js"></script>
+  <script src="js/app/utils/UtilMessage.js"></script>
+  <script src="js/app/utils/UtilNumber.js"></script>
+  <script src="js/app/utils/UtilSleep.js"></script>
+  <script src="js/app/configs/config_circle.js"></script>
+  <script src="js/app/configs/config_map.js"></script>
+  <script src="js/app/configs/config_map_dem_function.js"></script>
+  <script src="js/app/configs/config_old_edition_map.js"></script>
+  <script src="js/app/managers/MapManager.js"></script>
+  <script src="js/app/managers/PermanentCacheManager.js"></script>
+  <script src="js/app/managers/SeaSurfaceManager.js"></script>
+  <script src="js/app/managers/SwitchMapModeManager.js"></script>
+  <script src="js/app/managers/clickManagers/ClickManager.js"></script>
+  <script src="js/app/managers/clickManagers/ClickManagerCore.js"></script>
+  <script src="js/app/managers/clickManagers/DistanceCircleFactory.js"></script>
+  <script src="js/app/managers/clickManagers/DistanceCircleInfoProvider.js"></script>
+  <script src="js/app/managers/dialogs/AdvancedDialogManager.js"></script>
+  <script src="js/app/managers/dialogs/RecommendDialogManager.js"></script>
+  <script src="js/app/managers/dragHandlers/AdvancedDialogDragHandler.js"></script>
+  <script src="js/app/managers/dragHandlers/DialogHelper.js"></script>
+  <script src="js/app/managers/dragHandlers/DragHandlerCore.js"></script>
+  <script src="js/app/managers/dragHandlers/MapDragHandler.js"></script>
+  <script src="js/app/managers/dragHandlers/RecommendDialogDragHandler.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommend100MeizanManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendCoreManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendDamLakeManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendDistanceManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendKazanManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendKofunManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendTimeManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerRecommendWaterfallManager.js"></script>
+  <script src="js/app/managers/moveManagers/MoveToCenterIsolatedManager.js"></script>
+  <script src="js/app/managers/moveManagers/MoveToCenterStandardManager.js"></script>
+  <script src="js/app/managers/searchManagers/SearchLatLngManager.js"></script>
+  <script src="js/app/managers/searchManagers/SearchLatLngManagerCore.js"></script>
+  <script src="js/app/managers/urlManagers/InitialSetViewManager.js"></script>
+  <script src="js/app/managers/urlManagers/UrlCopyManager.js"></script>
+  <script src="js/app/managers/urlManagers/UrlNormalizer.js"></script>
+  <script src="js/app/managers/urlManagers/UrlValidator.js"></script>
+  <script src="js/app/index.js"></script>
+
+</body>
+</html>

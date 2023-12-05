@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+body {
+  margin-left: 20px;
+}
+.head {
+  margin-bottom: 20px;
+}
+.head .title {
+  font-weight: bold;
+}
+.body {
+  margin-bottom: 40px;
+}
+
+.body .section {
+  margin-bottom: 20px;
+}
+.body .section .title {
+  font-weight: bold;
+}
+.body .section .content {
+  margin-left: 20px;
+  font-size: 14px;
+}
+.body .section .content .paragraph {
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: #F00;
+}
