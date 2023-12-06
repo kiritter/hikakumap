@@ -44,7 +44,8 @@
             var strRawValue = inputEl.value;
             strRawValue = strRawValue ? strRawValue.trim() : '';
             if (!strRawValue || strRawValue.includes(',') === false) {
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '1');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_1`);
                 alert(messageText);
                 return;
             }
@@ -53,13 +54,15 @@
             var lng = latlngArray[1].trim();
             if (lat && lng) {
             }else{
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '2');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_2`);
                 alert(messageText);
                 return;
             }
             if (MyApp.UtilNumber.isDecimalNumber(lat) && MyApp.UtilNumber.isDecimalNumber(lng)) {
             }else{
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '3');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_3`);
                 alert(messageText);
                 return;
             }
@@ -67,14 +70,16 @@
             var latF = parseFloat(lat, 10);
             if (-90 <= latF && latF <= 90) {
             }else{
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '4');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_4`);
                 alert(messageText2);
                 return;
             }
             var lngF = parseFloat(lng, 10);
             if (-180 <= lngF && lngF <= 180) {
             }else{
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '5');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_5`);
                 alert(messageText);
                 return;
             }
@@ -83,7 +88,8 @@
 
             var isWithin = MyApp.UtilMap.isWithinLimitMapBounds(targetLatLng);
             if (isWithin === false) {
-                this.gaChannel.publishWithContent(`search[${this.getTopicName()}]_invalid`, '6');
+                var gaText = `search[${this.getTopicName()}]_invalid`;
+                this.gaChannel.publishWithContent(gaText, `${gaText}_6`);
                 alert('申し訳ございません。移動可能範囲外です。');
                 return;
             }
