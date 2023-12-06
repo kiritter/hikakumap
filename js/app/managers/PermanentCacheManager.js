@@ -2,8 +2,9 @@
     var MyApp = global.MyApp = global.MyApp || {};
 
     MyApp.PermanentCacheManager = class PermanentCacheManager {
-        constructor(gaChannel, permanentCacheStatusRepo, navigator, location) {
+        constructor(gaChannel, globalState, permanentCacheStatusRepo, navigator, location) {
             this.gaChannel = gaChannel;
+            this.hasIndexedDbApi = globalState.hasIndexedDbApi;
             this.permanentCacheStatusRepo = permanentCacheStatusRepo;
             this.window_navigator = navigator;
             this.window_location = location;
@@ -55,6 +56,15 @@
         }
 
         settingBtnArea(cacheType) {
+            if (this.hasIndexedDbApi === false) {
+                this.hiddenBtnArea('oldedition');
+                this.hiddenBtnArea('full');
+                this.hiddenBtnArea('clear');
+                this.showNoApiArea();
+                this.gaChannel.publish('indexedDB_api_nothing');
+                return;
+            }
+
             var isCacheTypeOldEdition = this.permanentCacheStatusRepo.isCacheTypeOldEdition(cacheType);
             var isCacheTypeFull = this.permanentCacheStatusRepo.isCacheTypeFull(cacheType);
 
@@ -96,6 +106,11 @@
             var btnCaption = `(非表示)`;
             var btnEl = document.querySelector(`.js-permanent-cache-${cacheTypePrefix}-btn`);
             btnEl.value = btnCaption;
+        }
+
+        showNoApiArea() {
+            var areaEl = document.querySelector(`.js-permanent-cache-noapi-area`);
+            areaEl.style.display = 'block';
         }
 
         settingEventHandlerToBtn() {

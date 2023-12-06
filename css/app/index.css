@@ -483,6 +483,13 @@ body {
   color: #000;
   font-size: 11px;
 }
+.permanent-cache-noapi-area{
+  display: none;
+}
+.permanent-cache-btn-note-noapi {
+  color: #f00;
+  font-size: 11px;
+}
 .permanent-cache-estimate-display {
   font-size: 12px;
   margin-bottom: 10px;

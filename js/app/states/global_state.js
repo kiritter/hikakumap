@@ -2,6 +2,7 @@
     var MyApp = global.MyApp = global.MyApp || {};
 
     MyApp.globalState = {
+        hasIndexedDbApi: false,
         mapMode: 1,
         seaSurfaceHeight: 4,
     };

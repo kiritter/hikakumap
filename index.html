@@ -167,6 +167,9 @@
         <div class="permanent-cache-note">すぐに数百MB～数GBを費やす機能であるため、<br>「<span class="permanent-cache-note-link"><a href="html/readme_cache.html" target="_blank">機能の説明</a></span>」をご確認のうえ、ご利用ください。</div>
         <div class="permanent-cache-status-display">現在の設定値は <span class="permanent-cache-status-text">[<span class="js-permanent-cache-status">xxx</span>]</span> です。</div>
         <div class="permanent-cache-each-wrap">
+          <div class="permanent-cache-noapi-area js-permanent-cache-noapi-area">
+            <div class="permanent-cache-btn-note-noapi">（※保存用APIが存在しない環境のため、キャッシュ機能利用不可）</div>
+          </div>
           <div class="js-permanent-cache-oldedition-btn-area">
             <input type="button" class="permanent-cache-btn js-permanent-cache-oldedition-btn" value="xxx">
             <div class="permanent-cache-btn-note">（切替後、画面を自動で再表示します）</div>
@@ -221,6 +224,7 @@
   <script src="js/app/states/Ga4Channel.js"></script>
   <script src="js/app/states/Ga4Repo.js"></script>
   <script src="js/app/states/global_state.js"></script>
+  <script src="js/app/states/global_statex_indexeddb_api_detector.js"></script>
   <script src="js/app/states/GlobalCacheRepo.js"></script>
   <script src="js/app/states/MyChannel.js"></script>
   <script src="js/app/states/OldEditionMapIdCacheRepo.js"></script>

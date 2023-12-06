@@ -75,6 +75,8 @@
 
     };
 
-    MyApp.oldEditionMapIdCacheRepo = new MyApp.OldEditionMapIdCacheRepo();
+    if (MyApp.globalState.hasIndexedDbApi) {
+        MyApp.oldEditionMapIdCacheRepo = new MyApp.OldEditionMapIdCacheRepo();
+    }
 
 }(this));

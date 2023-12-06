@@ -6,8 +6,8 @@ async function initMyApp(global) {
 
     var myChannel = new MyApp.MyChannel();
 
-    var permanentCacheStatusRepo = new MyApp.PermanentCacheStatusRepo();
-    var permanentCacheManager = new MyApp.PermanentCacheManager(gaChannel, permanentCacheStatusRepo, global.navigator, global.location);
+    var permanentCacheStatusRepo = new MyApp.PermanentCacheStatusRepo(MyApp.globalState);
+    var permanentCacheManager = new MyApp.PermanentCacheManager(gaChannel, MyApp.globalState, permanentCacheStatusRepo, global.navigator, global.location);
     permanentCacheManager.init();
     var currentCacheType = await permanentCacheManager.findCurrentCacheType();
 

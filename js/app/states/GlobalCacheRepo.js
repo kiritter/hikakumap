@@ -103,6 +103,8 @@
 
     };
 
-    MyApp.globalCacheRepo = new MyApp.GlobalCacheRepo();
+    if (MyApp.globalState.hasIndexedDbApi) {
+        MyApp.globalCacheRepo = new MyApp.GlobalCacheRepo();
+    }
 
 }(this));

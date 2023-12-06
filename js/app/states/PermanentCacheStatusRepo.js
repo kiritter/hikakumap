@@ -10,10 +10,13 @@
             },
         }
 
-        constructor() {
+        constructor(globalState) {
+            this.hasIndexedDbApi = globalState.hasIndexedDbApi;
             this.localforage = global.localforage;
             this.DB_NAME = 'Db_Hikaku';
-            this.store = this._createInstanceCore(this.localforage, this.DB_NAME);
+            if (this.hasIndexedDbApi) {
+                this.store = this._createInstanceCore(this.localforage, this.DB_NAME);
+            }
         }
 
         _createInstanceCore(localforage, DB_NAME) {
@@ -36,6 +39,12 @@
         }
 
         async findBy(key) {
+            if (this.hasIndexedDbApi === false) {
+                return new Promise(function(resolve, reject) {
+                    resolve(null);
+                });
+            }
+
             try {
                 var value = await this.store.getItem(key);
                 return value;
@@ -80,6 +89,12 @@
         }
 
         async save(key, value) {
+            if (this.hasIndexedDbApi === false) {
+                var message = 'hasIndexedDbApi[false] However, PermanentCacheStatusRepo[save()]';
+                console.error(message);
+                throw new Error(message);
+            }
+
             try {
                 await this.store.setItem(key, value);
             } catch(err) {
@@ -89,6 +104,12 @@
         }
 
         async dropDatabase() {
+            if (this.hasIndexedDbApi === false) {
+                var message = 'hasIndexedDbApi[false] However, PermanentCacheStatusRepo[dropDatabase()]';
+                console.error(message);
+                throw new Error(message);
+            }
+
             try {
                 await this.localforage.dropInstance({
                     name: this.DB_NAME,
