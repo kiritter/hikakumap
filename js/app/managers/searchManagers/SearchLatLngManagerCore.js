@@ -86,13 +86,6 @@
 
             var targetLatLng = L.latLng(lat, lng);
 
-            var isWithin = MyApp.UtilMap.isWithinLimitMapBounds(targetLatLng);
-            if (isWithin === false) {
-                var gaText = `search[${this.getTopicName()}]_invalid`;
-                this.gaChannel.publishWithContent(gaText, `${gaText}_6`);
-                alert('申し訳ございません。移動可能範囲外です。');
-                return;
-            }
 
             return targetLatLng;
         }
