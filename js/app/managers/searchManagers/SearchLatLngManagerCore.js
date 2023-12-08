@@ -37,8 +37,8 @@
         }
 
         _retrieveInputValue() {
-            var messageText = '"緯度,経度"を入力してください。\n例：35.6816, 139.7671\n(※GoogleMapsからコピペする用途を想定)';
-            var messageText2 = '"緯度,経度"の順序で入力してください。\n例：35.6816, 139.7671\n(※GoogleMapsからコピペする用途を想定)';
+            var messageText = '"緯度,経度"を入力してください。\n例：35.6816, 139.7671\n(※Googleマップからコピペする用途を想定)';
+            var messageText2 = '"緯度,経度"の順序で入力してください。\n例：35.6816, 139.7671\n(※Googleマップからコピペする用途を想定)';
 
             var inputEl = this._getInputEl();
             var strRawValue = inputEl.value;
