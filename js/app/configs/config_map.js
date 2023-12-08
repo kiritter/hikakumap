@@ -57,6 +57,7 @@
             options: {
                 myTileUrl: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 18,
@@ -72,6 +73,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/{z}/{x}/{y}.png',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 18,
@@ -85,6 +87,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/{z}/{x}/{y}.png',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 17,
@@ -98,6 +101,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 17,
@@ -111,6 +115,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 10,
                 maxZoom: 18,
                 maxNativeZoom: 17,
@@ -124,6 +129,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/gazo2/{z}/{x}/{y}.jpg',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 10,
                 maxZoom: 18,
                 maxNativeZoom: 17,
@@ -137,6 +143,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/gazo4/{z}/{x}/{y}.jpg',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 8,
                 maxZoom: 18,
                 minNativeZoom: 10,
@@ -151,6 +158,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 18,
@@ -165,6 +173,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/hillshademap/{z}/{x}/{y}.png',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 16,
@@ -181,6 +190,7 @@
             options: {
                 myTileUrl: 'https://cyberjapandata.gsi.go.jp/xyz/slopemap/{z}/{x}/{y}.png',
                 attribution: `<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>`,
+                crossOrigin: 'anonymous',
                 minZoom: 5,
                 maxZoom: 18,
                 maxNativeZoom: 15,
