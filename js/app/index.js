@@ -1,4 +1,5 @@
 async function initMyApp(global) {
+    MyApp.UtilMobileDetector.init(global.matchMedia);
 
     var gaChannel = new MyApp.Ga4Channel();
     var gaRepo = new MyApp.Ga4Repo(gaChannel, global);
