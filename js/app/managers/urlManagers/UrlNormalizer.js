@@ -32,8 +32,7 @@
             var lng = urlQueryParamRepo.getQueryValueBy('lng');
 
             if (zoom === undefined) {
-                var zoomMinMax = MyApp.UtilMap.getZoomLevelMinMax();
-                var initialZoomLevel = zoomMinMax.minZoom;
+                var initialZoomLevel = MyApp.UtilMap.getInitialZoomLevel();
                 urlQueryParamRepo.addQueryKeyValue('z', initialZoomLevel);
             }
             if (lat === undefined || lng === undefined) {

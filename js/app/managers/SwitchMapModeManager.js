@@ -76,7 +76,7 @@
             var area2 = document.querySelector('.js-move-to-center-isolated-area');
             area2.style.display = 'none';
             var area3 = document.querySelector('.js-latlng-info-area-right');
-            area3.style.display = 'none';
+            area3.classList.add('display-none');
         }
         _showisolatedArea() {
             var area1 = document.querySelector('.js-move-to-center-standard-area');
@@ -84,7 +84,7 @@
             var area2 = document.querySelector('.js-move-to-center-isolated-area');
             area2.style.display = 'block';
             var area3 = document.querySelector('.js-latlng-info-area-right');
-            area3.style.display = 'block';
+            area3.classList.remove('display-none');
         }
 
         _changeGlobalState(strValue) {

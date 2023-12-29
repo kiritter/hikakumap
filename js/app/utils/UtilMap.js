@@ -10,6 +10,10 @@
             var maxZoom = 18;
             return {minZoom: minZoom, maxZoom: maxZoom};
         }
+        static getInitialZoomLevel() {
+            var initZoom = 5;
+            return initZoom;
+        }
 
         static getInitialCenter() {
             var center = L.latLng(35.3622222, 138.7313889);

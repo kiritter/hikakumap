@@ -2,7 +2,7 @@
     var MyApp = global.MyApp = global.MyApp || {};
 
     MyApp.MarkerRecommendCoreManager = class MarkerRecommendCoreManager {
-        constructor(gaChannel, mapBoth, layerName, url, contentCallback) {
+        constructor(gaChannel, mapBoth, layerName, url, contentCallback, options) {
             this.gaChannel = gaChannel;
             this.mapLeft = mapBoth.mapLeft;
             this.mapRight = mapBoth.mapRight;
@@ -11,6 +11,7 @@
             this.layerName = layerName;
             this.url = url;
             this.contentCallback = contentCallback;
+            this.options = options;
         }
 
         async init() {
@@ -65,6 +66,18 @@
                     });
                 },
             };
+
+            if (this.options && this.options.markerClassName) {
+                options['pointToLayer'] = (geoJsonPoint, latlng) => {
+                    var icon = new L.Icon.Default();
+                    icon.options.className = self.options.markerClassName;
+                    var markerOptions = {
+                        icon: icon,
+                    };
+                    var marker = L.marker(latlng, markerOptions);
+                    return marker;
+                };
+            }
 
             var popupOptions = {
             };

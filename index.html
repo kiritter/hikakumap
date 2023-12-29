@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="異なる時期や異なる場所の地図を重ねて表示し、両者を比較して見ることに特化した地図閲覧サイトです。地理院地図の年代別空中写真、日本版MapWarperの「五万分一地形圖」が閲覧できます。大きさや距離がつかみやすいよう、目安となる同心円を表示します。">
   <meta name="theme-color" content="#C4DFE6">
-  <meta name="thumbnail" content="https://kiritter.github.io/hikakumap/thumbnails/thmb-192x192.png">
+  <meta name="thumbnail" content="https://kiritter.github.io/hikakumap/thumbnails/thmb-256x256.png">
   <meta property="og:title" content="時期と距離の比較地図">
   <meta property="og:description" content="異なる時期や異なる場所の地図を重ねて表示し、両者を比較して見ることに特化した地図閲覧サイトです。地理院地図の年代別空中写真、日本版MapWarperの「五万分一地形圖」が閲覧できます。大きさや距離がつかみやすいよう、目安となる同心円を表示します。">
   <meta property="og:url" content="https://kiritter.github.io/hikakumap/">
@@ -33,6 +33,7 @@
 
 <body class="js-body">
   <div class="my-header">
+    <span class="map-reload"><a class="map-reload-anchor" href="./" target="_self"><img class="map-reload-img" src="images/reload_48px.png" width="18" alt="Reload this page"></a></span>
     <span class="map-title">時期と距離の比較地図</span>
     <span class="recommend-place">
       <span class="recommend-place-note">いくつかの場所をピックアップしました</span>
@@ -133,7 +134,7 @@
       </div>
     </div>
 
-    <div class="latlng-info-area latlng-info-area-right js-latlng-info-area js-latlng-info-area-right">
+    <div class="latlng-info-area latlng-info-area-right js-latlng-info-area js-latlng-info-area-right display-none">
       <div class="search-latlng-area">
         <div>
           <span>緯度,経度：<input type="text" class="search-latlng-input js-search-latlng-input" value="" placeholder="Search"></span>

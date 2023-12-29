@@ -66,21 +66,31 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
                 separator1.classList.add('leaflet-control-layers-separator');
                 label.insertAdjacentElement('afterend', separator1);
 
-                const wrap = document.createElement('div');
-                wrap.classList.add(obj.layer.options.sourceSummaryCssClassName);
-                const link = document.createElement('a');
-                link.href = obj.layer.options.sourceSummaryUrl;
-                link.innerText = obj.layer.options.sourceSummaryText;
-                link.target = '_blank';
-                wrap.appendChild(link);
-                const span = document.createElement('span');
-                span.innerText = obj.layer.options.sourceSummaryNote;
-                wrap.appendChild(span);
-                separator1.insertAdjacentElement('afterend', wrap);
+                var _createMyWrap = function(linkInfo) {
+                    const wrap = document.createElement('div');
+                    wrap.classList.add(linkInfo.sourceSummaryCssClassName);
+                    const link = document.createElement('a');
+                    link.href = linkInfo.sourceSummaryUrl;
+                    link.innerText = linkInfo.sourceSummaryText;
+                    link.target = '_blank';
+                    wrap.appendChild(link);
+                    const span = document.createElement('span');
+                    span.innerText = linkInfo.sourceSummaryNote;
+                    wrap.appendChild(span);
+                    return wrap;
+                };
+                var linkInfoList = obj.layer.options.lastElementLinkInfoList;
+                var len = linkInfoList.length;
+                var insertTargetEl = separator1;
+                for (var i = 0; i < len; i++) {
+                    const wrap = _createMyWrap(linkInfoList[i]);
+                    insertTargetEl.insertAdjacentElement('afterend', wrap);
+                    insertTargetEl = wrap;
+                }
 
                 const separator2 = document.createElement('div');
                 separator2.classList.add('leaflet-control-layers-separator');
-                wrap.insertAdjacentElement('afterend', separator2);
+                insertTargetEl.insertAdjacentElement('afterend', separator2);
             }
         }
 

@@ -27,19 +27,19 @@
             var baseMaps = {};
             var overlayMaps = {};
             var defaultSelectedLayers = [];
-        
+
             this.addLayersTo(this.configMap.LayerConfigTable, this.configMap.MapLeftBaseList, baseMaps, defaultSelectedLayers)
             this.addLayersTo(this.configMap.LayerConfigTable, this.configMap.MapLeftOverlayList, overlayMaps, defaultSelectedLayers)
-        
+
             var options = {
                 collapsed: false,
                 position: 'topleft'
             };
-            
+
             var isZoomCtrl = false;
             var isAttributionControl = false;
             var map = this.createMap(mapId, defaultSelectedLayers, baseMaps, overlayMaps, options, isZoomCtrl, isAttributionControl);
-        
+
             L.control.zoom({
                 position: 'topright'
             }).addTo(map);
@@ -47,29 +47,35 @@
             L.control.attribution({
                 position: 'bottomleft'
             }).addTo(map);
-        
+
+            if (isAttributionControl === false) {
+                defaultSelectedLayers.forEach(function(layer) {
+                    layer.addTo(map);
+                });
+            }
+
             return map;
         }
-        
+
         createMapRight(mapId) {
             var baseMaps = {};
             var overlayMaps = {};
             var defaultSelectedLayers = [];
-        
+
             this.addLayersTo(this.configMap.LayerConfigTable, this.configMap.MapRightBaseList, baseMaps, defaultSelectedLayers)
             this.addLayersTo(this.configMap.LayerConfigTable, this.configMap.MapRightOverlayList, overlayMaps, defaultSelectedLayers)
-        
+
             var options = {
                 collapsed: false,
                 position: 'topright'
             };
-        
+
             var isZoomCtrl = true;
             var isAttributionControl = true;
             var map = this.createMap(mapId, defaultSelectedLayers, baseMaps, overlayMaps, options, isZoomCtrl, isAttributionControl)
             return map;
         }
-        
+
         addLayersTo(table, list, maps, defaultSelectedLayers) {
             var len = list.length;
             for (var i = 0; i < len; i++) {
@@ -134,7 +140,7 @@
 
         createMap(mapId, defaultSelectedLayers, baseMaps, overlayMaps, options, isZoomCtrl, isAttributionControl) {
             var zoomMinMax = MyApp.UtilMap.getZoomLevelMinMax();
-            var initialZoomLevel = zoomMinMax.minZoom;
+            var initialZoomLevel = MyApp.UtilMap.getInitialZoomLevel();
             var initialCenter = MyApp.UtilMap.getInitialCenter();
             var limitMapBounds = MyApp.UtilMap.getLimitMapBounds();
 
@@ -144,13 +150,12 @@
                 zoom: initialZoomLevel,
                 minZoom: initialZoomLevel,
                 maxZoom: zoomMinMax.maxZoom,
-                layers: defaultSelectedLayers,
+                layers: (isAttributionControl === false) ? [] : defaultSelectedLayers,
                 zoomControl: isZoomCtrl,
                 attributionControl: isAttributionControl
             });
-        
-            var layerControl = L.control.layers.withClose(baseMaps, overlayMaps, options).addTo(map);
 
+            var layerControl = L.control.layers.withClose(baseMaps, overlayMaps, options).addTo(map);
 
             this.showCurrentZoomLevel(initialZoomLevel);
 
@@ -163,12 +168,12 @@
 
             return map;
         }
-        
+
         showCurrentZoomLevel(currentValue) {
             var zoomLevelEl = document.querySelector('.js-current-zoom-level');
             zoomLevelEl.innerText = currentValue;
         }
-        
+
         forceEnableControlLayerRadioCheck() {
             var radioCheckElList = document.querySelectorAll('.leaflet-control-layers .leaflet-control-layers-list .leaflet-control-layers-overlays .leaflet-control-layers-selector');
             radioCheckElList.forEach(function(el) {

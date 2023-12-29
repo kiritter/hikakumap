@@ -6,7 +6,10 @@
             var layerName = 'recommend_100meizan';
             var url = 'geojson/01_recommend_places/100meizan.geojson';
             var contentCallback = MarkerRecommend100MeizanManager._buildMarkerPopupContent;
-            this.coreManager = new MyApp.MarkerRecommendCoreManager(gaChannel, mapBoth, layerName, url, contentCallback);
+            var options = {
+                markerClassName: 'marker-gray',
+            };
+            this.coreManager = new MyApp.MarkerRecommendCoreManager(gaChannel, mapBoth, layerName, url, contentCallback, options);
         }
 
         async init() {

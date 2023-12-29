@@ -307,17 +307,27 @@
             },
         },
         'recommend_100meizan': {
-            caption: '日本百名山',
+            caption: 'おまけ：日本百名山',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'recommend_100meizan',
                 isLastElement: true,
-                sourceSummaryUrl: 'html/source_summary.html',
-                sourceSummaryText: '地図データの出典情報',
-                sourceSummaryNote: '',
-                sourceSummaryCssClassName: 'source-summary-link',
+                lastElementLinkInfoList: [
+                    {
+                        sourceSummaryUrl: 'html/source_summary.html',
+                        sourceSummaryText: '地図データの出典情報',
+                        sourceSummaryNote: '',
+                        sourceSummaryCssClassName: 'source-summary-link',
+                    },
+                    {
+                        sourceSummaryUrl: '../#product-map',
+                        sourceSummaryText: '当Webサイトの兄弟地図サイトを見る',
+                        sourceSummaryNote: '',
+                        sourceSummaryCssClassName: 'source-summary-link',
+                    },
+                ],
             },
         },
 
