@@ -251,7 +251,7 @@
         },
 
         'recommend_time': {
-            caption: '「見てみる：時期で比較」に載せた場所',
+            caption: '「事例一覧：時期で比較」に載せた場所',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -262,7 +262,7 @@
             },
         },
         'recommend_distance': {
-            caption: '「見てみる：距離で比較」に載せた場所',
+            caption: '「事例一覧：距離で比較」に載せた場所',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -271,7 +271,7 @@
             },
         },
         'recommend_kazan': {
-            caption: '「見てみる：番外編(火山活動)」に載せた場所',
+            caption: '「事例一覧：番外編(火山活動)」に載せた場所',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -280,7 +280,7 @@
             },
         },
         'recommend_waterfall': {
-            caption: '「見てみる：番外編(滝)」に載せた場所',
+            caption: '「事例一覧：番外編(滝)」に載せた場所',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -289,7 +289,7 @@
             },
         },
         'recommend_kofun': {
-            caption: '「見てみる：番外編(前方後円墳)」に載せた場所',
+            caption: '「事例一覧：番外編(前方後円墳)」に載せた場所',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -298,7 +298,7 @@
             },
         },
         'recommend_damlake': {
-            caption: '「見てみる：番外編(ダム湖)」に載せた場所（ダム湖百選）',
+            caption: '「事例一覧：番外編(ダム湖)」に載せた場所（ダム湖百選）',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
