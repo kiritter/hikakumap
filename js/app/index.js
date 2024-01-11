@@ -28,6 +28,9 @@ async function initMyApp(global) {
     var urlRepo = new MyApp.UrlRepo(global.location);
     var urlQueryParamRepo = urlRepo.getUrlQueryParamRepo();
 
+    var pathManager = new MyApp.PathManager(gaChannel, mapBoth, MyApp.globalState, myChannel);
+    pathManager.init();
+
     var markerRecommendTimeManager = new MyApp.MarkerRecommendTimeManager(gaChannel, mapBoth);
     markerRecommendTimeManager.init();
     var markerRecommendDistanceManager = new MyApp.MarkerRecommendDistanceManager(gaChannel, mapBoth);

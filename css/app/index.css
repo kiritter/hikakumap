@@ -686,3 +686,13 @@ body.cursor-col-resize-whole * {
   filter: grayscale(100%);
 }
 
+.tooltip-path-1-point {
+  background-color: #c4ffff;
+}
+.tooltip-path-2-point {
+  background-color: #e2ffc4;
+}
+.tooltip-path-3-point {
+  background-color: #ffe1c4;
+}
+
