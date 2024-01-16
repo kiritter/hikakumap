@@ -30,21 +30,8 @@ async function initMyApp(global) {
 
     var pathManager = new MyApp.PathManager(gaChannel, mapBoth, MyApp.globalState, myChannel);
     pathManager.init();
-
-    var markerRecommendTimeManager = new MyApp.MarkerRecommendTimeManager(gaChannel, mapBoth);
-    markerRecommendTimeManager.init();
-    var markerRecommendDistanceManager = new MyApp.MarkerRecommendDistanceManager(gaChannel, mapBoth);
-    markerRecommendDistanceManager.init();
-    var markerRecommendKazanManager = new MyApp.MarkerRecommendKazanManager(gaChannel, mapBoth);
-    markerRecommendKazanManager.init();
-    var markerRecommendWaterfallManager = new MyApp.MarkerRecommendWaterfallManager(gaChannel, mapBoth);
-    markerRecommendWaterfallManager.init();
-    var markerRecommendKofunManager = new MyApp.MarkerRecommendKofunManager(gaChannel, mapBoth);
-    markerRecommendKofunManager.init();
-    var markerRecommend100MeizanManager = new MyApp.MarkerRecommend100MeizanManager(gaChannel, mapBoth);
-    markerRecommend100MeizanManager.init();
-    var markerRecommendDamLakeManager = new MyApp.MarkerRecommendDamLakeManager(gaChannel, mapBoth);
-    markerRecommendDamLakeManager.init();
+    var markerManager = new MyApp.MarkerManager(gaChannel, mapBoth);
+    markerManager.init();
 
     var distanceCircleInfoProvider = new MyApp.DistanceCircleInfoProvider(MyApp.configCircle);
     var distanceCircleFactory = new MyApp.DistanceCircleFactory(distanceCircleInfoProvider);
