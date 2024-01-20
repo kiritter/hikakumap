@@ -142,7 +142,24 @@ body {
   right: 50%;
 }
 
-@media (max-width: 750px) {
+@media (min-width: 975px) {
+  #map-left .leaflet-control-container .leaflet-control-zoom {
+    display: block;
+  }
+  #map-right .leaflet-control-container .leaflet-control-zoom {
+    display: none;
+  }
+}
+@media (max-width: 974px) {
+  #map-left .leaflet-control-container .leaflet-control-zoom {
+    display: none;
+  }
+  #map-right .leaflet-control-container .leaflet-control-zoom {
+    display: block;
+  }
+}
+
+@media (max-width: 974px) {
   #map-right .leaflet-control-container .control-layers-custom-button-collapse-wraper {
     text-align: right;
   }
@@ -175,10 +192,8 @@ body {
 
 .current-zoom-level {
   position: absolute;
-  top: 51px;
-  right: 55%;
   z-index: 9901;
-  width: 165px;
+  width: 110px;
   color: #00F;
   background-color: #FFF;
   padding: 1px 5px;
@@ -186,17 +201,39 @@ body {
   border-radius: 5px;
   user-select: none;
 }
+@media (min-width: 975px) {
+  .current-zoom-level {
+    top: 51px;
+    right: 55%;
+  }
+}
+@media (max-width: 974px) {
+  .current-zoom-level {
+    bottom: 29px;
+    right: 50px;
+  }
+}
 
 .click-remarks-area {
   position: absolute;
-  top: 93px;
-  right: 55%;
   z-index: 9901;
   color: #00F;
   background-color: #FFF;
   padding: 1px 5px;
   border-radius: 5px;
   user-select: none;
+}
+@media (min-width: 975px) {
+  .click-remarks-area {
+    top: 93px;
+    right: 55%;
+  }
+}
+@media (max-width: 974px) {
+  .click-remarks-area {
+    bottom: 70px;
+    right: 50px;
+  }
 }
 .click-remarks-note {
   font-size: 11px;

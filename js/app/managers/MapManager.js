@@ -72,9 +72,13 @@
                 position: 'topright'
             };
 
-            var isZoomCtrl = true;
+            var isZoomCtrl = false;
             var isAttributionControl = true;
             var map = this.createMap(mapId, defaultSelectedLayers, baseMaps, overlayMaps, options, isZoomCtrl, isAttributionControl)
+
+            L.control.zoom({
+                position: 'bottomright'
+            }).addTo(map);
 
             this.settingSingleChoiceCheckbox(map, mapId);
 
