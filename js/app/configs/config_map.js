@@ -25,6 +25,7 @@
         {name: 'hillshade', selected: false},
         {name: 'dem5a', selected: false},
         {name: 'slope', selected: false},
+        {name: 'pref_border', selected: false},
         {name: 'recommend_time', selected: false},
         {name: 'recommend_distance', selected: false},
         {name: 'recommend_damlake', selected: false},
@@ -172,7 +173,6 @@
                 myLayerName: 'latest',
                 myCacheName: 'latest',
                 myCacheRepo: MyApp.globalCacheRepo,
-                addSeparatorToBottom: true,
             },
         },
         'hillshade': {
@@ -188,6 +188,7 @@
                 myLayerName: 'hillshade',
                 myCacheName: 'hillshade',
                 myCacheRepo: MyApp.globalCacheRepo,
+                addSeparatorToBeforebegin: true,
                 blockDescription: '重ねて表示したいモノを選択してください。（※傾斜量図は単独表示用途）',
                 blockDescriptionCssClassName: 'block-description',
             },
@@ -205,7 +206,6 @@
                 myLayerName: 'slope',
                 myCacheName: 'slope',
                 myCacheRepo: MyApp.globalCacheRepo,
-                addSeparatorToBottom: true,
             },
         },
 
@@ -265,6 +265,7 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'recommend_time',
+                addSeparatorToBeforebegin: true,
                 blockDescription: '場所を表示します。',
                 blockDescriptionCssClassName: 'block-description',
             },
@@ -331,11 +332,20 @@
                     },
                     {
                         sourceSummaryUrl: '../#product-map',
-                        sourceSummaryText: '当Webサイトの兄弟地図サイトを見る',
+                        sourceSummaryText: '当Webサイトの🗾兄弟地図サイトを見る',
                         sourceSummaryNote: '',
                         sourceSummaryCssClassName: 'source-summary-link',
                     },
                 ],
+            },
+        },
+        'pref_border': {
+            caption: '都道府県境 (目安, 2014年時点)',
+            tileType: MyApp.configMap.TileType.Empty,
+            options: {
+                minZoom: 5,
+                maxZoom: 18,
+                myLayerName: 'pref_border',
             },
         },
 

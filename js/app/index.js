@@ -33,6 +33,9 @@ async function initMyApp(global) {
     var markerManager = new MyApp.MarkerManager(gaChannel, mapBoth);
     markerManager.init();
 
+    var prefBorderManager = new MyApp.PrefectureBorderManager(mapBoth, MyApp.globalState, myChannel);
+    prefBorderManager.init();
+
     var distanceCircleInfoProvider = new MyApp.DistanceCircleInfoProvider(MyApp.configCircle);
     var distanceCircleFactory = new MyApp.DistanceCircleFactory(distanceCircleInfoProvider);
     var oldEditionMapIdRepo = new MyApp.OldEditionMapIdRepo(currentCacheType);
@@ -62,6 +65,9 @@ async function initMyApp(global) {
 
     var searchLatLngManager = new MyApp.SearchLatLngManager(gaChannel, mapBoth, MyApp.globalState, myChannel, clickManager);
     searchLatLngManager.init();
+
+    mapBoth.mapLeft.fire('overlayadd');
+    mapBoth.mapRight.fire('overlayadd');
 }
 
 initMyApp(this);
