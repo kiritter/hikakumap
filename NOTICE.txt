@@ -24,6 +24,12 @@ Leaflet.GeometryUtil
         https://makinacorpus.github.io/Leaflet.GeometryUtil/
         https://github.com/makinacorpus/Leaflet.GeometryUtil
 
+leaflet-corridor
+    LICENSE:
+        MIT license
+    Website:
+        https://github.com/mikhailshilkov/leaflet-corridor
+
 localForage
     LICENSE:
         Apache-2.0 license

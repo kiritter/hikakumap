@@ -7,8 +7,8 @@
             this.globalState = globalState;
             this.myChannel = myChannel;
 
-            this.pathAshidagawa1Manager = new MyApp.EachPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_ashidagawa_1_main.geojson');
-            this.pathAshidagawa2Manager = new MyApp.EachPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_ashidagawa_2_sub.geojson');
+            this.pathAshidagawa1Manager = new MyApp.EachWidthMeterPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_ashidagawa_1_main.geojson');
+            this.pathAshidagawa2Manager = new MyApp.EachWidthMeterPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_ashidagawa_2_sub.geojson');
             this.pathAshidagawaShorelineManager = new MyApp.EachPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_ashidagawa_shoreline.geojson');
 
             this.pathKamogataOurai1Manager = new MyApp.EachPathManager(mapBoth, globalState, 'recommend_time', 'geojson/02_recommend_paths/path_kamogata_ourai_1_north.geojson');
