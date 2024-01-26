@@ -58,6 +58,14 @@
         }
         _hiddenAllCategories() {
             var rootEl = document.querySelector('.js-recommend-place-area .js-recommend-place-list');
+            var categoryOpenMarkElList = rootEl.querySelectorAll('.category-open-mark');
+            categoryOpenMarkElList.forEach(function(el) {
+                el.classList.remove('display-none');
+            });
+            var categoryCloseMarkElList = rootEl.querySelectorAll('.category-close-mark');
+            categoryCloseMarkElList.forEach(function(el) {
+                el.classList.add('display-none');
+            });
             var categoryBodyElList = rootEl.querySelectorAll('.category-body');
             categoryBodyElList.forEach(function(el) {
                 el.classList.add('display-none');

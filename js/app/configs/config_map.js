@@ -31,7 +31,6 @@
         {name: 'recommend_damlake', selected: false},
         {name: 'recommend_kazan', selected: false},
         {name: 'recommend_waterfall', selected: false},
-        {name: 'recommend_kofun', selected: false},
         {name: 'recommend_100meizan', selected: false},
     ];
 
@@ -189,7 +188,7 @@
                 myCacheName: 'hillshade',
                 myCacheRepo: MyApp.globalCacheRepo,
                 addSeparatorToBeforebegin: true,
-                blockDescription: '重ねて表示したいモノを選択してください。（※傾斜量図は単独表示用途）',
+                blockDescription: '重ねて表示できます（※傾斜量図は単独表示用途）',
                 blockDescriptionCssClassName: 'block-description',
             },
         },
@@ -224,7 +223,7 @@
                 myCacheRepo: MyApp.globalCacheRepo,
                 myOldEditionMapIdLocalRepo: MyApp.oldEditionMapIdLocalRepo,
                 myOldEditionMapIdCacheRepo: MyApp.oldEditionMapIdCacheRepo,
-                blockDescription: '見たい年代を1つ選択してください。',
+                blockDescription: '見たい年代を1つ選択してください',
                 blockDescriptionCssClassName: 'block-description',
             },
         },
@@ -266,7 +265,7 @@
                 maxZoom: 18,
                 myLayerName: 'recommend_time',
                 addSeparatorToBeforebegin: true,
-                blockDescription: '場所を表示します。',
+                blockDescription: '場所を表示します',
                 blockDescriptionCssClassName: 'block-description',
             },
         },
@@ -277,6 +276,15 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'recommend_distance',
+            },
+        },
+        'recommend_damlake': {
+            caption: '「事例一覧：番外編(ダム湖)」に載せた場所（ダム湖百選）',
+            tileType: MyApp.configMap.TileType.Empty,
+            options: {
+                minZoom: 5,
+                maxZoom: 18,
+                myLayerName: 'recommend_damlake',
             },
         },
         'recommend_kazan': {
@@ -295,24 +303,6 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'recommend_waterfall',
-            },
-        },
-        'recommend_kofun': {
-            caption: '「事例一覧：番外編(前方後円墳)」に載せた場所',
-            tileType: MyApp.configMap.TileType.Empty,
-            options: {
-                minZoom: 5,
-                maxZoom: 18,
-                myLayerName: 'recommend_kofun',
-            },
-        },
-        'recommend_damlake': {
-            caption: '「事例一覧：番外編(ダム湖)」に載せた場所（ダム湖百選）',
-            tileType: MyApp.configMap.TileType.Empty,
-            options: {
-                minZoom: 5,
-                maxZoom: 18,
-                myLayerName: 'recommend_damlake',
             },
         },
         'recommend_100meizan': {
