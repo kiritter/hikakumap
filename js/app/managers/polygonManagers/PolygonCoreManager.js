@@ -2,7 +2,8 @@
     var MyApp = global.MyApp = global.MyApp || {};
 
     MyApp.PolygonCoreManager = class PolygonCoreManager {
-        constructor(mapBoth, globalState, layerName, callbacks, options, targetTimeRangeType, targetUrl) {
+        constructor(gaChannel, mapBoth, globalState, layerName, callbacks, options, targetTimeRangeType, targetUrl, isLazyLoad) {
+            this.gaChannel = gaChannel;
             this.mapLeft = mapBoth.mapLeft;
             this.mapRight = mapBoth.mapRight;
             this.globalState = globalState;
@@ -11,6 +12,8 @@
             this.options = options;
             this.targetTimeRangeType = targetTimeRangeType;
             this.targetUrl = targetUrl;
+            this.isLazyLoad = isLazyLoad;
+            this.isFileLoaded = false;
 
             this.layerGroupLeft = L.layerGroup();
             this.layerGroupRight = L.layerGroup();
@@ -21,11 +24,11 @@
         async init() {
             this.addEventListenersToMap();
 
-            this.geojson = await this.findPlaceData();
-            var polygonsGroup = this.createPolygonsGroup(this.geojson);
-            this.layerGroupLeft.addLayer(polygonsGroup);
-            var polygonsGroup2 = this.createPolygonsGroup(this.geojson);
-            this.layerGroupRight.addLayer(polygonsGroup2);
+            if (this.isLazyLoad) {
+                await this._findEmptyDummy();
+            }else{
+                await this._findAndCreate();
+            }
         }
 
         addEventListenersToMap() {
@@ -35,6 +38,23 @@
                     this.layerGroupRight.addTo(this.mapRight);
                 }
                 return;
+            }
+
+            if (this.isLazyLoad) {
+                this.mapLeft.on('overlayadd', function(layersControlEvent) {
+                    var targetLayer = MyApp.UtilMap.findLayerByNameInActiveLayers(self.mapLeft, self.layerName);
+                    if (targetLayer) {
+                        if (self.mapLeft.hasLayer(self.layerGroupLeft) === false) {
+                            if (self.globalState.timeRangeType === self.targetTimeRangeType) {
+                                if (self.isFileLoaded === false) {
+                                    self._findAndCreate();
+                                    self.gaChannel.publish(`do_lazyload[${self.layerName}]`);
+                                }
+                            }
+                        }
+                    }else{
+                    }
+                });
             }
 
             var self = this;
@@ -88,9 +108,24 @@
             }
         }
 
+        async _findAndCreate() {
+            this.geojson = await this.findPlaceData();
+            this.isFileLoaded = true;
+            var polygonsGroup = this.createPolygonsGroup(this.geojson);
+            this.layerGroupLeft.addLayer(polygonsGroup);
+            var polygonsGroup2 = this.createPolygonsGroup(this.geojson);
+            this.layerGroupRight.addLayer(polygonsGroup2);
+        }
+
         async findPlaceData() {
             var res = await fetch(this.targetUrl);
             return res.json();
+        }
+
+        async _findEmptyDummy() {
+            return new Promise(function(resolve, reject) {
+                resolve();
+            });
         }
 
         createPolygonsGroup(geoJson) {

@@ -33,7 +33,7 @@ async function initMyApp(global) {
     var markerManager = new MyApp.MarkerManager(gaChannel, mapBoth);
     markerManager.init();
 
-    var prefBorderManager = new MyApp.PrefectureBorderManager(mapBoth, MyApp.globalState, myChannel);
+    var prefBorderManager = new MyApp.PrefectureBorderManager(gaChannel, mapBoth, MyApp.globalState, myChannel);
     prefBorderManager.init();
 
     var distanceCircleInfoProvider = new MyApp.DistanceCircleInfoProvider(MyApp.configCircle);
