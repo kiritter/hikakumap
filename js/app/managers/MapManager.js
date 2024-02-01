@@ -33,7 +33,8 @@
 
             var options = {
                 collapsed: false,
-                position: 'topleft'
+                position: 'topleft',
+                _myControlLayerMenuHeightBuffer: this.configMap._myControlLayerMenuHeightBuffer,
             };
 
             var isZoomCtrl = false;
@@ -69,7 +70,8 @@
 
             var options = {
                 collapsed: false,
-                position: 'topright'
+                position: 'topright',
+                _myControlLayerMenuHeightBuffer: this.configMap._myControlLayerMenuHeightBuffer,
             };
 
             var isZoomCtrl = false;
